@@ -18,6 +18,13 @@ body {
     margin: 5px;
     border: 1px solid gray;
     background-color: antiquewhite;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.flex-container:hover{
+    box-shadow: 3px 3px 3px 3px lightblue;
+    background-color: rgb(207, 188, 164);
+    transform: translateY(-0.5rem);
 }
 
 span {
@@ -64,6 +71,14 @@ h1 {
     border-radius: 8px;
 }
 
+.button:hover{
+    background-color: #1f8f23;
+}
+
+.button:active{
+    background-color: #075509;
+}
+
 .my-input {
     padding: 10px 5px;
     margin: 0 1px;
@@ -75,6 +90,12 @@ h1 {
     padding: 20px;
     border: 1px solid #4CAF50;
     width: 500px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#parameters:hover{
+    box-shadow: 10px 10px 5px 5px lightblue;
+    transform: translateY(-0.5rem);
 }
 
 #buttons{
