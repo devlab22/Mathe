@@ -53,7 +53,6 @@ h1 {
 
 .button {
     background-color: #4CAF50;
-    /* Green */
     border: none;
     color: white;
     padding: 10px 16px;
@@ -63,7 +62,6 @@ h1 {
     font-size: 16px;
     cursor: pointer;
     border-radius: 8px;
-    margin: 0 5px;
 }
 
 .my-input {
@@ -76,4 +74,9 @@ h1 {
     margin: 10px;
     padding: 20px;
     border: 1px solid #4CAF50;
+    width: 500px;
+}
+
+#buttons{
+    margin-top: 10px;
 }
