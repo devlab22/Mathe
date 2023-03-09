@@ -9,8 +9,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("opera").addEventListener("change", onOperaChanged);
     document.getElementById("btnCalculate").addEventListener("click", onCalculate);
-    document.getElementById("btnRefresh").addEventListener("click", setContent);
-    document.getElementById("btnClear").addEventListener("click", () => {
+    document.getElementById("btnRefresh").addEventListener("click", onSetContent);
+    document.getElementById("btnClear").addEventListener("click", (event) => {
+        event.preventDefault();
         setResultValue('');
     })
     document.getElementById("input1").addEventListener("change", () => {
@@ -30,8 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
            element.classList.add(className)
         }
     };
-    function setContent() {
 
+    function setContent() {
+       
         setOperaValue();
 
         for (let i = 1; i <= count; i++) {
@@ -79,8 +81,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
+    function onSetContent(event){
+        event.preventDefault();
+        setContent()
+    }
     function onCalculate(event) {
 
+        event.preventDefault();
+        
         for (let i = 1; i <= count; i++) {
             calculateRecord(i)
         }

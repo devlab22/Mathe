@@ -1,14 +1,16 @@
-
-body{
+body {
     margin: 0;
     font-size: 16px;
+    background-color: azure;
 }
 
 .flex-container-main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    margin: 5px;
 }
+
 .flex-container {
     display: flex;
     flex-direction: row;
@@ -18,27 +20,60 @@ body{
     background-color: antiquewhite;
 }
 
-span{ 
+span {
     font-size: 1.5rem;
     width: 15px;
 }
-.opera{
-   margin-right: 35px;
-   margin-left: 35px; 
+
+.opera {
+    margin-right: 35px;
+    margin-left: 35px;
 }
-.equil{
+
+.equil {
     margin-left: 25px;
     margin-right: 15px;
 }
 
-#input1, #input2, #opera{
+#input1,
+#input2,
+#opera {
     width: 70px;
 }
 
-h1{
-    font-size: 1.5rem;
+h1 {
+    font-size: 2rem;
     text-align: center;
+    color: #24b629;
 }
-.result-span{
+
+.result-span {
     margin-right: 1rem;
+}
+
+.button {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 10px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 8px;
+    margin: 0 5px;
+}
+
+.my-input {
+    padding: 10px 5px;
+    margin: 0 1px;
+    border: 1px solid #4CAF50;
+}
+
+#parameters{
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #4CAF50;
 }

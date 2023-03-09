@@ -11,11 +11,11 @@
 
 <body>
         <form action="mathe.html" method="GET">
-                <fieldset>
+                <fieldset id="parameters">
                         <legend>Parameter</legend>
-                        <input id="input1" type="number" value="1">
-                        <input id="input2" type="number" value="100">
-                        <select name="opera" id="opera">
+                        <input id="input1" class="my-input" type="number" value="1">
+                        <input id="input2" class="my-input" type="number" value="100">
+                        <select name="opera" id="opera" class="my-input">
                                 <option value="+">+</option>
                                 <option value="-" selected>-</option>
                                 <option value="*">*</option>
@@ -23,9 +23,10 @@
                                 <option value="%">modulo</option>
                                 <option value="//">div</option>
                         </select>
-                        <input id="btnRefresh" type="button" name="refresh" value="Aktualisieren">
-                        <input id="btnCalculate" type="button" name="calculate" value="Berechnen">
-                        <input id="btnClear" type="button" name="clear" value="Zurücksetzen">
+                        
+                        <button id="btnRefresh" class="button">Aktualisieren</button>
+                        <button id="btnCalculate" class="button">Berechnen</button>
+                        <button id="btnClear" class="button">Zurücksetzen</button>
                 </fieldset>
         </form>
         <h1>Aufgaben</h1>
