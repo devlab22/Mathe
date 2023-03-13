@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title></title>
         <link rel="stylesheet" type="text/css" href="css/countries.css">
+        <link rel="stylesheet" type="text/css" href="css/index.css">
 
 </head>
 
@@ -15,9 +16,29 @@
                 <a class="nav-link" href="mathe.html">Mathe</a>
                 <a class="nav-link active-nav" href="countries.html">Countries</a>
         </nav>
-        
+        <form>
+                <fieldset id="parameters">
+                        <legend>Parameter</legend>
+
+                        <input class="my-input" type="text" value="Region" readonly>
+
+                        <select name="opera" id="region" class="my-input">
+                                <option value="*">All</option>
+                                <option value="europe">Europe</option>
+                                <option value="asia">Asia</option>
+                                <option value="americas">Americas</option>
+                                <option value="africa">Africa</option>
+                                <option value="oceania">Oceania</option>
+                                <option value="antarctic">Antarctic</option>
+                        </select>
+
+                        <input id="count" class="my-input" type="number" readonly>
+                        <br />
+
+                </fieldset>
+        </form>
         <div id="main">
-               
+
         </div>
 
         <script src="src/countries.js"></script>
