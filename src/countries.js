@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('region').addEventListener('change', onSetContent);
     document.getElementById('search').addEventListener('input', onSearch);
     let countries = [];
+    let filteredItems = [];
     loadData();
 
     function loadData() {
@@ -93,15 +94,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const region = event.target.value;
         removeCards()
 
-        let data = []
         if(region === '*'){
-            data = countries;
+            filteredItems = countries;
         }
         else{
-            data = countries.filter(item => item.region.toLowerCase() === region)
+            filteredItems = countries.filter(item => item.region.toLowerCase() === region)
         }
 
-        setContent(data)
+        const value = document.getElementById('search').value;
+        if(value.length > 0){
+            filteredItems = filteredItems.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
+        }
+
+        setContent(filteredItems)
     }
 
     function removeCards(){
@@ -119,11 +124,17 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         const value = event.target.value;
-        
-        const data = countries.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
-        
+
         removeCards()
-        setContent(data)
+
+        if(filteredItems.length > 0){
+            filteredItems = filteredItems.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
+        }
+        else{
+            filteredItems = countries.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
+        }
+        
+        setContent(filteredItems)
 
     }
 
