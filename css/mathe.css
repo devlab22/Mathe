@@ -10,7 +10,7 @@
     flex-direction: row;
     padding: 10px 40px 10px 10px;
     margin: 5px;
-    border: 1px solid gray;
+    /* border: 1px solid gray; */
     background-color: antiquewhite;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
@@ -36,12 +36,6 @@ span {
     margin-right: 15px;
 }
 
-#input1,
-#input2,
-#opera {
-    width: 70px;
-}
-
 h1 {
     font-size: 2rem;
     text-align: center;
@@ -52,17 +46,11 @@ h1 {
     margin-right: 1rem;
 }
 
-.my-input {
-    padding: 10px 5px;
-    margin: 0 1px;
-    border: 1px solid #4CAF50;
-}
-
 #parameters{
     margin: 10px;
     padding: 20px;
     border: 1px solid #4CAF50;
-    width: 500px;
+    width: 400px;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
 }
 

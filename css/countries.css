@@ -43,3 +43,16 @@
     flex-direction: row;
     flex-wrap: wrap;
 }
+
+#parameters-filter {
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #4CAF50;
+    width: 350px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+#parameters-filter:hover {
+    box-shadow: 10px 10px 5px 5px lightblue;
+    transform: translateY(-0.5rem);
+}
