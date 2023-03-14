@@ -4,9 +4,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let userLang = navigator.language || navigator.userLanguage;
 
-    document.getElementById('region').addEventListener('change', onSetContent)
+    document.getElementById('region').addEventListener('change', onSetContent);
+    document.getElementById('search').addEventListener('input', onSearch);
     let countries = [];
-    loadData()
+    loadData();
 
     function loadData() {
 
@@ -16,7 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 data.sort((a, b) => a.name.common.localeCompare(b.name.common));
                 countries = data;
-                renderContent(countries);
+                setContent(countries);
             });
     }
 
@@ -51,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return element;
     }
 
-    function renderContent(data=[]){
+    function setContent(data=[]){
 
         document.getElementById('count').value = data.length;
 
@@ -88,7 +89,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function onSetContent(event){
         event.preventDefault();
-        const region = document.getElementById('region').value;
+        
+        const region = event.target.value;
         removeCards()
 
         let data = []
@@ -99,7 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
             data = countries.filter(item => item.region.toLowerCase() === region)
         }
 
-        renderContent(data)
+        setContent(data)
     }
 
     function removeCards(){
@@ -111,6 +113,18 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             
         }
+    }
+
+    function onSearch(event){
+        event.preventDefault();
+
+        const value = event.target.value;
+        
+        const data = countries.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
+        
+        removeCards()
+        setContent(data)
+
     }
 
 })

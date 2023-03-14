@@ -50,9 +50,15 @@ nav{
 }
 .my-input {
     padding: 10px 5px;
-    margin: 0 1px;
+    margin: 2px;
     border: 1px solid #4CAF50;
     width: 100px;
+}
+.my-search{
+     padding: 10px 5px;
+    margin: 2px;
+    border: 1px solid #4CAF50;
+    width: 200px;
 }
 
 #parameters{
