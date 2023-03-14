@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
             element.id = data[i].name.common
            
             element.addEventListener('click', () => {
-                window.open(data[i].maps.googleMaps)
+                window.open(data[i].maps.googleMaps);
             })
 
             const name = createTitle(data[i].name.common)
@@ -83,6 +83,10 @@ document.addEventListener("DOMContentLoaded", () => {
             element.appendChild(region)
             const subregion = createKeyValue('Subregion', data[i].subregion)
             element.appendChild(subregion)
+            const continent = createKeyValue('Continent', data[i].continents);
+            element.appendChild(continent);
+            const unMember = createKeyValue('Un Member', ( Boolean(data[i].unMember) ) ? 'Yes' : 'No' );
+            element.appendChild(unMember);
 
             document.getElementById("main").appendChild(element);               
         }
