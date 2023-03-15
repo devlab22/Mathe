@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const count = document.getElementsByClassName("opera").length;
 
     let userLang = navigator.language || navigator.userLanguage;
-
+    
+    document.getElementById('count-header').textContent = count;
     document.getElementById("opera").addEventListener("change", onOperaChanged);
     document.getElementById("btnCalculate").addEventListener("click", onCalculate);
     document.getElementById("btnRefresh").addEventListener("click", onSetContent);

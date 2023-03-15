@@ -85,16 +85,18 @@ document.addEventListener("DOMContentLoaded", () => {
             element.appendChild(subregion)
             const continent = createKeyValue('Continent', data[i].continents);
             element.appendChild(continent);
-            const unMember = createKeyValue('Un Member', ( Boolean(data[i].unMember) ) ? 'Yes' : 'No' );
+            const unMember = createKeyValue('UN Member', ( Boolean(data[i].unMember) ) ? 'Yes' : 'No' );
             element.appendChild(unMember);
 
             document.getElementById("main").appendChild(element);               
         }
+
+        document.getElementById('loader').classList.add('no-display');
     }
 
     function onSetContent(event){
         event.preventDefault();
-        
+        document.getElementById('loader').classList.remove('no-display');
         const region = event.target.value;
         removeCards()
 
@@ -128,7 +130,7 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         const value = event.target.value;
-
+        document.getElementById('loader').classList.remove('no-display');
         removeCards()
 
         if(filteredItems.length > 0){
