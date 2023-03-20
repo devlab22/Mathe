@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let userLang = navigator.language || navigator.userLanguage;
 
-    document.getElementById('region').addEventListener('change', onSetContent);
+    document.getElementById('continent').addEventListener('change', onSetContent);
     document.getElementById('search').addEventListener('input', onSearch);
     let countries = [];
     let filteredItems = [];
@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         image.className = 'keyvalue';
         return image;
     }
+
     function createKeyValue(key = '', value = '') {
         const para = document.createElement("p");
         para.className = 'keyvalue';
@@ -64,6 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
             element.id = data[i].name.common
            
             element.addEventListener('click', () => {
+                console.log(data[i].continents)
                 window.open(data[i].maps.googleMaps);
             })
 
@@ -97,14 +99,27 @@ document.addEventListener("DOMContentLoaded", () => {
     function onSetContent(event){
         event.preventDefault();
         document.getElementById('loader').classList.remove('no-display');
-        const region = event.target.value;
+        const filter = event.target.value;
         removeCards()
 
-        if(region === '*'){
+        if(filter === '*'){
             filteredItems = countries;
         }
         else{
-            filteredItems = countries.filter(item => item.region.toLowerCase() === region)
+            filteredItems = countries.filter(item => {
+
+                const tmp = item.continents.map(element => element.toLowerCase())
+
+                if(filter === 'america' && ( tmp.includes('north america') || tmp.includes('south america'))){
+                   return item;
+                }
+
+                if(tmp.includes(filter.toLowerCase())){
+                    return item;
+                }
+                
+            
+            })
         }
 
         const value = document.getElementById('search').value;
