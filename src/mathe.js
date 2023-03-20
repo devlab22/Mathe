@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let userLang = navigator.language || navigator.userLanguage;
 
     let count = document.getElementById('task-count').value;
-    document.getElementById('count-header').textContent = count;
+    
     document.getElementById("task-count").addEventListener("change", onCountChange)
     document.getElementById("opera").addEventListener("change", onOperaChanged);
     document.getElementById("btnCalculate").addEventListener("click", onCalculate);
@@ -25,7 +25,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function renderTasks() {
 
-        const parent = document.getElementById('parent')
+        const parent = document.getElementById('parent');
+        let count = document.getElementById('task-count').value;
+        document.getElementById('count-header').textContent = count;
+
         for (var i = 0; i < count; i++) {
             const item = createTask(i);
             parent.appendChild(item);
@@ -68,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
     function setContent() {
 
         setOperaValue();
-
         for (let i = 0; i < count; i++) {
             setRecord(i);
         }
@@ -122,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function onCalculate(event) {
 
         event.preventDefault();
-
+    
         for (let i = 0; i < count; i++) {
             calculateRecord(i)
         }
@@ -133,8 +135,7 @@ document.addEventListener("DOMContentLoaded", () => {
         removeTasks();
 
         count = event.target.value;
-        document.getElementById('count-header').textContent = count;
-
+        
         renderTasks();
 
     }
