@@ -6,8 +6,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById('continent').addEventListener('change', onSetContent);
     document.getElementById('search').addEventListener('input', onSearch);
+    document.getElementById('myFilter').addEventListener('change', onChangeFilter);
     let countries = [];
     let filteredItems = [];
+    let regionItems = new Set();
+    let subregionItems = new Set();
+    let continentItems = new Set();
     loadData();
 
     function loadData() {
@@ -18,10 +22,80 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 data.sort((a, b) => a.name.common.localeCompare(b.name.common));
                 countries = data;
+                setFilterItems();
+                fillFilterItems();
                 setContent(countries);
             });
     }
 
+    function fillFilterItems() {
+        var cont = document.getElementById('continent');
+        var contLength = cont.length;
+
+        for (var i = 0; i <= contLength; i++) {
+            cont.remove(0);
+        }
+
+        var filter = document.getElementById('myFilter').value
+
+        var option = document.createElement("option");
+        option.text = 'All';
+        option.value = '*';
+        cont.add(option, 0)
+
+        switch (filter) {
+            case 'region':
+                regionItems.forEach(item => {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item.toLowerCase();
+                    cont.add(option)
+                })
+                break;
+            case 'subregion':
+                subregionItems.forEach(item => {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item.toLowerCase();
+                    cont.add(option)
+                })
+                break;
+            case 'continents':
+                continentItems.forEach(item => {
+                    var option = document.createElement("option");
+                    option.text = item;
+                    option.value = item.toLowerCase();
+                    cont.add(option)
+                })
+                break;
+            default:
+                console.log('unknow')
+        }
+    }
+    function setFilterItems() {
+
+        countries.forEach(item => {
+
+            if (item.region) {
+                regionItems.add(item.region);
+            }
+            if (item.subregion) {
+                subregionItems.add(item.subregion);
+            }
+            if (item.continents) {
+
+                item.continents.forEach(element => continentItems.add(element))
+
+            }
+
+        })
+
+    }
+    function onChangeFilter(event) {
+        fillFilterItems();
+        removeCards();
+        setContent(countries);
+    }
     function createImage(src, alt) {
         const image = document.createElement('img')
         image.src = src
@@ -45,7 +119,7 @@ document.addEventListener("DOMContentLoaded", () => {
         para.appendChild(itemValue)
         return para;
     }
-    function createTitle(title){
+    function createTitle(title) {
 
         const element = document.createElement('h1')
         element.className = 'card-title';
@@ -54,7 +128,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return element;
     }
 
-    function setContent(data=[]){
+    function setContent(data = []) {
 
         document.getElementById('count').value = data.length;
 
@@ -63,9 +137,9 @@ document.addEventListener("DOMContentLoaded", () => {
             const element = document.createElement('div')
             element.className = 'card'
             element.id = data[i].name.common
-           
+
             element.addEventListener('click', () => {
-                console.log(data[i].continents)
+                console.log(data[i])
                 window.open(data[i].maps.googleMaps);
             })
 
@@ -87,74 +161,85 @@ document.addEventListener("DOMContentLoaded", () => {
             element.appendChild(subregion)
             const continent = createKeyValue('Continent', data[i].continents);
             element.appendChild(continent);
-            const unMember = createKeyValue('UN Member', ( Boolean(data[i].unMember) ) ? 'Yes' : 'No' );
+            const unMember = createKeyValue('UN Member', (Boolean(data[i].unMember)) ? 'Yes' : 'No');
             element.appendChild(unMember);
 
-            document.getElementById("main").appendChild(element);               
+            document.getElementById("main").appendChild(element);
         }
 
         document.getElementById('loader').classList.add('no-display');
     }
 
-    function onSetContent(event){
+    function onSetContent(event) {
         event.preventDefault();
+
         document.getElementById('loader').classList.remove('no-display');
         const filter = event.target.value;
+        const fieldname = document.getElementById('myFilter').value;
+
         removeCards()
 
-        if(filter === '*'){
+        if (filter === '*') {
             filteredItems = countries;
         }
-        else{
+        else {
             filteredItems = countries.filter(item => {
 
-                const tmp = item.continents.map(element => element.toLowerCase())
+                if (item[fieldname]) {
 
-                if(filter === 'america' && ( tmp.includes('north america') || tmp.includes('south america'))){
-                   return item;
+                    var tmp = []
+                    if (Array.isArray(item[fieldname])) {
+                        tmp = item[fieldname].map(element => element.toLowerCase());
+                    }
+                    else {
+                        tmp.push(item[fieldname].toLowerCase());
+                    }
+
+                    if (tmp.includes(filter.toLowerCase())) {
+                        return item;
+                    }
                 }
 
-                if(tmp.includes(filter.toLowerCase())){
-                    return item;
-                }
-                
-            
             })
         }
 
         const value = document.getElementById('search').value;
-        if(value.length > 0){
+        if (value.length > 0) {
             filteredItems = filteredItems.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
         }
 
         setContent(filteredItems)
     }
 
-    function removeCards(){
-       
-        for(let i=0; i<countries.length; i++){
+    function removeCards() {
+
+        for (let i = 0; i < countries.length; i++) {
             const item = document.getElementById(countries[i].name.common)
-            if(item){
+            if (item) {
                 item.remove()
             }
-            
+
         }
     }
 
-    function onSearch(event){
+    function onSearch(event) {
         event.preventDefault();
 
         const value = event.target.value;
+        const filter = document.getElementById('continent').value;
         document.getElementById('loader').classList.remove('no-display');
         removeCards()
 
-        if(filteredItems.length > 0){
+        if (filteredItems.length > 0) {
             filteredItems = filteredItems.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
         }
-        else{
-            filteredItems = countries.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
+        else {
+
+            if (filter === '*') {
+                filteredItems = countries.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
+            }
         }
-        
+
         setContent(filteredItems)
 
     }
