@@ -77,14 +77,14 @@ nav {
     padding: 10px 5px;
     margin: 2px;
     border: 1px solid #4CAF50;
-    width: 200px;
+    width: 100%;
 }
 
 .my-select {
     padding: 10px 5px;
     margin: 2px;
     border: 1px solid #4CAF50;
-    width: auto;
+    width: 100%;
 }
 
 .no-display {

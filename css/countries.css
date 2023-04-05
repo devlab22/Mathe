@@ -56,3 +56,25 @@
     box-shadow: 10px 10px 5px 5px lightblue;
     transform: translateY(-0.5rem);
 }
+
+#country-input-container{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+#country-search-container{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+@media (max-width: 380px){
+
+    #parameters-filter{
+        width: 280px;
+    }
+
+    #country-input-container{     
+        flex-direction: column;
+    }
+}

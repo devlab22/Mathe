@@ -19,19 +19,23 @@
         <form>
                 <fieldset id="parameters-filter">
                         <legend>Filter</legend>
+                        <div id="country-input-container">
+                                <select name="opera" id="myFilter" class="my-select">
+                                        <option value="region">Region</option>
+                                        <option value="subregion">Subregion</option>
+                                        <option value="continents">Continent</option>
+                                </select>
 
-                        <select name="opera" id="myFilter" class="my-select">
-                                <option value="region">Region</option>
-                                <option value="subregion">Subregion</option>
-                                <option value="continents">Continent</option>
-                        </select>
+                                <select name="opera" id="continent" class="my-select">
+                                </select>
 
-                        <select name="opera" id="continent" class="my-select">
-                        </select>
+                                <input id="count" class="my-input" type="number" readonly>
+                        </div>
 
-                        <input id="count" class="my-input" type="number" readonly>                      
-                        <br />
-                        <input id="search" class="my-search" type="search" placeholder="search">
+                        <div id="country-search-container">
+                         <input id="search" class="my-search" type="search" placeholder="search">
+                        </div>
+                       
 
                 </fieldset>
         </form>
