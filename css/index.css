@@ -1,8 +1,13 @@
+* {
+    box-sizing: border-box;
+  }
+
 body {
     margin: 0;
     padding: 0;
     font-size: 16px;
     background-color: azure;
+    min-width: 350px;
 }
 
 /* === Navigation === */
@@ -48,7 +53,17 @@ nav {
 }
 
 #buttons {
-    margin-top: 10px;
+    gap: 5px;
+    display: flex;
+    flex-direction: row;
+}
+
+@media (max-width: 380px) {
+    
+   #buttons{
+    flex-direction: column;
+    
+   }
 }
 
 .my-input {
@@ -69,7 +84,7 @@ nav {
     padding: 10px 5px;
     margin: 2px;
     border: 1px solid #4CAF50;
-
+    width: auto;
 }
 
 .no-display {

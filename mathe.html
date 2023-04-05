@@ -18,18 +18,21 @@
         <form>
                 <fieldset id="parameters">
                         <legend>Parameter</legend>
-                        <input id="input1" class="my-input" type="number" value="1">
-                        <input id="input2" class="my-input" type="number" value="100">
-                        <select name="opera" id="opera" class="my-select">
-                                <option value="+">+</option>
-                                <option value="-" selected>-</option>
-                                <option value="*">*</option>
-                                <option value="/">/</option>
-                                <option value="%">modulo</option>
-                                <option value="//">div</option>
-                        </select>
-                        <input id="task-count" type="number" class="my-input" value="60">
-                        <br/>
+                        <div id="mathe-input-container">
+                                <input id="input1" class="my-input" type="number" value="1">
+                                <input id="input2" class="my-input" type="number" value="100">
+                                <select name="opera" id="opera" class="my-select">
+                                        <option value="+">+</option>
+                                        <option value="-" selected>-</option>
+                                        <option value="*">*</option>
+                                        <option value="/">/</option>
+                                        <option value="%">modulo</option>
+                                        <option value="//">div</option>
+                                </select>
+                                <input id="task-count" type="number" class="my-input" value="60">
+                        </div>
+
+                        
                         <div id="buttons">
                                 <button id="btnRefresh" class="button">Aktualisieren</button>
                                 <button id="btnCalculate" class="button">Berechnen</button>
