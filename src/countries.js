@@ -105,6 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function createKeyValue(key = '', value = '') {
+
         const para = document.createElement("p");
         para.className = 'keyvalue';
         const itemKey = document.createElement('span');
@@ -117,7 +118,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const valueContent = document.createTextNode(value)
         itemValue.appendChild(valueContent)
         para.appendChild(itemValue)
+
+        if(key.toLowerCase() === 'area'){
+            const itemkm = document.createElement('span');
+            itemkm.style.marginLeft = '5px';
+            const kmvalue = document.createTextNode('km');
+            itemkm.appendChild(kmvalue)
+            para.appendChild(itemkm)
+
+            const itemQuad = document.createElement('span')
+            itemQuad.classList.add('quad');
+            const quadValue = document.createTextNode('2')
+            itemQuad.appendChild(quadValue)
+            para.appendChild(itemQuad);
+        }
         return para;
+
     }
     function createTitle(title) {
 
@@ -174,16 +190,24 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
 
         document.getElementById('loader').classList.remove('no-display');
-        const filter = event.target.value;
-        const fieldname = document.getElementById('myFilter').value;
-
         removeCards()
 
+        filteredItems = getFilteredItems();
+
+        setContent(filteredItems)
+    }
+
+    function getFilteredItems() {
+
+        const filter = document.getElementById('continent').value;
+        const fieldname = document.getElementById('myFilter').value;
+        let result = [];
+
         if (filter === '*') {
-            filteredItems = countries;
+            result = countries;
         }
         else {
-            filteredItems = countries.filter(item => {
+            result = countries.filter(item => {
 
                 if (item[fieldname]) {
 
@@ -204,11 +228,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const value = document.getElementById('search').value;
-        if (value.length > 0) {
-            filteredItems = filteredItems.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
+        if (value) {
+            result = result.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
         }
 
-        setContent(filteredItems)
+        return result;
     }
 
     function removeCards() {
@@ -225,21 +249,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function onSearch(event) {
         event.preventDefault();
 
-        const value = event.target.value;
-        const filter = document.getElementById('continent').value;
         document.getElementById('loader').classList.remove('no-display');
         removeCards()
 
-        if (filteredItems.length > 0) {
-            filteredItems = filteredItems.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
-        }
-        else {
-
-            if (filter === '*') {
-                filteredItems = countries.filter(item => item.name.common.toLowerCase().startsWith(value.toLowerCase()));
-            }
-        }
-
+        filteredItems = getFilteredItems();
         setContent(filteredItems)
 
     }
